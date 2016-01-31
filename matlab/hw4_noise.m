@@ -1,8 +1,8 @@
-% EE214 Winter 2010
+% EE214B Winter 2015
 % This file generates plots of the total output noise and the integrated
 % noise from .noise simulation results of HSpice.
 
-addpath('/usr/class/ee114/matlab/hspice_toolbox')
+addpath('/usr/class/ee214b/matlab/hspice_toolbox');
 clear all;
 close all;
 

@@ -38,6 +38,6 @@ else
     plot(ivar, sig)
 end
 
-title_str = strrep(title_str, '_', '\_');
+title_str = strrep(char(title_str), '_', '\_');
 ylabel(title_str);
 grid on;

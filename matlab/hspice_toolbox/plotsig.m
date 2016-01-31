@@ -51,4 +51,6 @@ end
 
 xlabel(x(1).name);
 
-zoom on
+if (exist('zoom'))
+   zoom on
+end

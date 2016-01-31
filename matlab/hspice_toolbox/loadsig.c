@@ -66,7 +66,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <float.h>
-#include "mat.h"
+/* #include "mat.h" */
 #include "mex.h"
  
 typedef struct  
@@ -1784,8 +1784,7 @@ int fread_float_values(char *simsource,float *fval, FILE *fp)
 
    if (fread(fval,4,1,fp) != 1)
       return(0);
-   if (strcmp(simsource,"hspice_sun") == 0 || 
-       strcmp(simsource,"cppsim_sun") == 0)
+   if (strcmp(simsource,"hspice") == 0) /* as opposed to hspice_win */
      { 
       cptr = (unsigned char *)fval;
       tmp = cptr[0];
