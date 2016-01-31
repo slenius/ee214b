@@ -16,12 +16,12 @@
 
 * MOSFETs
 *MNx  d     g     s     b     n/pmos214     w     l
-MN1   n_d   n_g   0     0     nmos214       w=20u  l=0.7u
+MP1   0   n_g   n_s   n_s     pmos214       w=5u  l=0.18u
 
 
 * Sources
-vd n_d 0 DC 1.5
-vg n_g 0 DC 0.75
+vds n_s 0 DC 1.8
+vgs n_g n_s DC -0.1
 
 .op
 .option post brief nomod
