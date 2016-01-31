@@ -1,0 +1,15 @@
+#! /bin/csh
+
+mkdir matlab_toolbox
+cd matlab_toolbox
+cp /usr/class/ee214/matlab_toolbox/hspice_toolbox.tar.gz ~/matlab_toolbox/.
+gzip -d *.gz
+tar xvf *.tar
+cp /usr/class/ee214/matlab_toolbox/pathdef.m ~/matlab_toolbox/.
+chmod 777 pathdef.m
+cp /usr/class/ee214/matlab_toolbox/prog.pl ~/matlab_toolbox/.
+pwd > tmp.txt
+perl prog.pl
+rm -f prog.pl
+rm -f tmp.txt
+rm -f hspice_toolbox.tar
