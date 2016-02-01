@@ -10,7 +10,7 @@
  lic:  
  lic: FLEXlm: v10.9.8 
  lic: USER:   lenius               HOSTNAME: corn32.stanford.edu 
- lic: HOSTID: 00144fcaa0b8         PID:      25742 
+ lic: HOSTID: 00144fcaa0b8         PID:      27226 
  lic: Using FLEXlm license file: 
  lic: 27000@cadlic0 
  lic: Checkout 1 hspice 
@@ -32,7 +32,7 @@
   Opening plot unit= 15
  file=ckt.pa0
 
- **info** dc convergence successful at Newton-Raphson method 
+ **info** dc convergence successful at GMINDC ramping method 
  ****** HSPICE -- I-2013.12-SP2 64-BIT (May 27 2014) RHEL64 ******              
  ******  
  * ee214b homework 4 problem 2
@@ -41,10 +41,10 @@
  ****** operating point status is all       simulation time is     0.     
     node    =voltage      node    =voltage      node    =voltage
 
- +0:t       = 216.9294m 0:vdd     =   1.8000  0:vgm     =   1.0000 
- +0:vgp     =   1.0000  0:vic     =   1.0000  0:vid     =   0.     
- +0:vim     =   1.0000  0:vip     =   1.0000  0:voc     =   1.2290 
- +0:vod     =   0.      0:vom     =   1.2290  0:vop     =   1.2290 
+ +0:t       = 233.3052m 0:vdd     =   1.8000  0:vic     =   1.0000 
+ +0:vid     =   0.      0:vim     =   1.0000  0:vip     =   1.0000 
+ +0:voc     =   1.0947  0:vod     =-113.4648f 0:vom     =   1.0947 
+ +0:vop     =   1.0947  2:vminv   =  -1.0947 
 
 
  **** voltage sources
@@ -52,10 +52,10 @@
  subckt                                   
  element  0:vdd      0:vic      0:vid     
   volts      1.8000     1.0000     0.     
-  current   -1.1420m    0.         0.     
-  power      2.0556m    0.         0.     
+  current -864.0000u    0.         0.     
+  power      1.5552m    0.         0.     
 
-     total voltage source power dissipation=    2.0556m       watts
+     total voltage source power dissipation=    1.5552m       watts
 
 
 
@@ -63,30 +63,30 @@
 
  subckt             
  element  0:it      
-  volts    216.9294m
-  current    1.1420m
-  power   -247.7334u
+  volts    233.3052m
+  current  864.0000u
+  power   -201.5757u
 
 
-     total current source power dissipation=-247.7334u       watts
+     total current source power dissipation=-201.5757u       watts
 
  **** resistors
 
- subckt                                                         
- element  0:rsp      0:rsm      0:rlp      0:rlm      0:rdum    
-  r value   10.0000k   10.0000k    1.0000k    1.0000k    1.0000g
-  v drop     0.         0.      -571.0000m -571.0000m    0.     
-  current    0.         0.      -571.0000u -571.0000u    0.     
-  power      0.         0.       326.0410u  326.0410u    0.     
+ subckt   x2         x2        
+ element  2:rdum1    2:rdum2   
+  r value    1.0000g    1.0000g
+  v drop  -113.4648f    1.0947 
+  current -1.135e-22    1.0947n
+  power      0.         1.1984n
 
 
  **** voltage-controlled voltage sources
 
 
- subckt     x1         x1         x2         x2      
- element  1:e1       1:e2       2:e1       2:e2      
-  volts      0.         0.         0.         0.     
-  current    0.         0.         0.         0.     
+ subckt     x1         x1         x2         x2         x2      
+ element  1:e1       1:e2       2:e1       2:e2       2:e3      
+  volts      0.         0.        -1.0947     1.0947  -113.6868f
+  current    0.         0.         0.        -1.0947n  1.135e-22
 
 
 
@@ -95,30 +95,30 @@
  **** mosfets
 
 
- subckt                        
- element  0:m1       0:m2      
- model    0:nmos214  0:nmos214 
- region     Saturati   Saturati
-  id       571.0000u  571.0000u
-  ibs        0.         0.     
-  ibd        0.         0.     
-  vgs      783.0706m  783.0706m
-  vds        1.0121     1.0121 
-  vbs     -216.9294m -216.9294m
-  vth      541.1596m  541.1596m
-  vdsat    176.8482m  176.8482m
-  vod      241.9110m  241.9110m
-  beta      22.0948m   22.0948m
-  gam eff  583.6854m  583.6854m
-  gm         4.0170m    4.0170m
-  gds      123.2972u  123.2972u
-  gmb      887.5677u  887.5677u
-  cdtot     12.6847f   12.6847f
-  cgtot     22.4760f   22.4760f
-  cstot     25.7820f   25.7820f
-  cbtot     19.4629f   19.4629f
-  cgs       16.2104f   16.2104f
-  cgd        5.2983f    5.2983f
+ subckt                                              
+ element  0:mn1      0:mn2      0:mp1      0:mp2     
+ model    0:nmos214  0:nmos214  0:pmos214  0:pmos214 
+ region     Saturati   Saturati   Saturati   Saturati
+  id       432.0000u  432.0000u -432.0000u -432.0000u
+  ibs        0.         0.         0.         0.     
+  ibd        0.         0.         0.         0.     
+  vgs      766.6948m  766.6948m -705.2893m -705.2893m
+  vds      861.4055m  861.4055m -705.2893m -705.2893m
+  vbs     -233.3052m -233.3052m    0.         0.     
+  vth      539.3026m  539.3026m -473.1715m -473.1715m
+  vdsat    175.9134m  175.9134m -201.5639m -201.5639m
+  vod      227.3922m  227.3922m -232.1178m -232.1178m
+  beta      19.6293m   19.6293m   16.4942m   16.4942m
+  gam eff  584.1622m  584.1622m  535.9139m  535.9139m
+  gm         3.4642m    3.4642m    3.4362m    3.4362m
+  gds       70.9399u   70.9399u   99.4185u   99.4185u
+  gmb      793.1022u  793.1022u    1.0741m    1.0741m
+  cdtot     16.0389f   16.0389f   60.7131f   60.7131f
+  cgtot     33.9738f   33.9738f  111.2142f  111.2142f
+  cstot     38.1539f   38.1539f  125.9796f  125.9796f
+  cbtot     26.0242f   26.0242f   89.8190f   89.8190f
+  cgs       25.8076f   25.8076f   80.5684f   80.5684f
+  cgd        6.6072f    6.6072f   28.0225f   28.0225f
 
 
 
@@ -130,14 +130,13 @@
   
        poles (rad/sec)                 poles ( hertz)
  real            imag            real            imag            
- -2.26114g       0.              -359.872x       0.              
- -35.9918g       0.              -5.72827g       0.              
+ -5.70888g       0.              -908.596x       0.              
   
        zeros (rad/sec)                 zeros ( hertz)
  real            imag            real            imag            
- 743.386g        0.              118.314g        0.              
+ 510.162g        0.              81.1948g        0.              
   
-  ***** constant factor = 391.496x
+  ***** constant factor = 10.7517m
 
           ***** job concluded
  ****** HSPICE -- I-2013.12-SP2 64-BIT (May 27 2014) RHEL64 ******              
@@ -164,12 +163,12 @@
 
 
   ******  Circuit Statistics  ******
-  # nodes       =      13 # elements   =      17
-  # resistors   =       5 # capacitors =       2 # inductors   =       0
-  # mutual_inds =       0 # vccs       =       0 # vcvs        =       4
+  # nodes       =      16 # elements   =      17
+  # resistors   =       2 # capacitors =       2 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       5
   # cccs        =       0 # ccvs       =       0 # volt_srcs   =       3
   # curr_srcs   =       1 # diodes     =       0 # bjts        =       0
-  # jfets       =       0 # mosfets    =       2 # U elements  =       0
+  # jfets       =       0 # mosfets    =       4 # U elements  =       0
   # T elements  =       0 # W elements =       0 # B elements  =       0
   # S elements  =       0 # P elements =       0 # va device   =       0
   # vector_srcs =       0 # N elements =       0
@@ -178,7 +177,7 @@
   ******  Runtime Statistics (seconds)  ******
 
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.02           1           7
+  op point           0.00           1         230
   ac analysis        0.00         601         601
   readin             0.01
   errchk             0.00
@@ -186,12 +185,12 @@
   output             0.00
 
 
-           peak memory used        176.53 megabytes
-           total cpu time            0.03 seconds
-           total elapsed time        2.30 seconds
-           job started at     18:00:04 01/31/2016
-           job ended   at     18:00:07 01/31/2016
+           peak memory used        176.54 megabytes
+           total cpu time            0.01 seconds
+           total elapsed time        1.68 seconds
+           job started at     18:10:32 01/31/2016
+           job ended   at     18:10:33 01/31/2016
 
 
  lic: Release hspice token(s) 
- lic: total license checkout elapse time:        2.25(s)
+ lic: total license checkout elapse time:        1.63(s)
