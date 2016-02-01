@@ -1,4 +1,7 @@
-addpath('/usr/class/ee214b/matlab');
+%addpath('/usr/class/ee214b/matlab');
+
+close all
+clear all
 
 load 180nch.mat
 load 180pch.mat
@@ -14,7 +17,7 @@ gmIDn = Av*gmIDp;
 L = 0.24;
 
 % Initialize
-iters = 5;
+iters = 1;
 Cself(1) = 0;
 
 for i = 1:iters
@@ -32,7 +35,7 @@ for i = 1:iters
         * lookup(nch, 'CDD_W', 'GM_ID', gmIDn, 'L', L);
     %--------
     % Your code here. Hint: three capacitances are relevant.
-    Cself(i+1) = Cdbn(i) + 
+    %Cself(i+1) = Cdbn(i) + 
     
     
     
