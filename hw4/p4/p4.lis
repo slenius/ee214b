@@ -1,0 +1,198 @@
+ ****** HSPICE -- I-2013.12-SP2 64-BIT (May 27 2014) RHEL64 ******              
+  Copyright (C) 2014 Synopsys, Inc. All Rights Reserved.                        
+  Unpublished-rights reserved under US copyright laws.
+  This program is protected by law and is subject to the
+  terms and conditions of the license agreement from Synopsys.
+  Use of this program is your acceptance to be bound by the
+  license agreement. HSPICE is the trademark of Synopsys, Inc.
+  Input File: ckt.sp                                                            
+  Command line options: ckt.sp
+ lic:  
+ lic: FLEXlm: v10.9.8 
+ lic: USER:   lenius               HOSTNAME: corn12.stanford.edu 
+ lic: HOSTID: 001b213a6521         PID:      16757 
+ lic: Using FLEXlm license file: 
+ lic: 27000@cadlic0 
+ lic: Checkout 1 hspice 
+ lic: License/Maintenance for hspice will expire on 16-oct-2016/2015.06 
+ lic: 1(in_use)/150(total) FLOATING license(s) on SERVER 27000@cadlic0 
+ lic:   
+
+ **warning**  runlvl smaller than 5, reset to 5  when accurate turned on
+
+ **warning**  runlvl smaller than 5, reset to 5  when accurate turned on
+ 
+
+  
+      
+ *****************************************************************
+ ******  option summary
+ ******
+ runlvl  = 5         bypass  = 2         
+  Opening plot unit= 15
+ file=ckt.pa0
+
+ **info** dc convergence successful at GMINDC ramping method 
+ ****** HSPICE -- I-2013.12-SP2 64-BIT (May 27 2014) RHEL64 ******              
+ ******  
+ * ee214b homework 4 problem 2
+
+ ****** operating point information tnom=  25.000 temp=  25.000 ******
+ ****** operating point status is all       simulation time is     0.     
+    node    =voltage      node    =voltage      node    =voltage
+
+ +0:t       = 310.8907m 0:vdd     =   1.8000  0:vic     =   1.0000 
+ +0:vid     =   0.      0:vim     =   1.0000  0:vip     =   1.0000 
+ +0:voc     =   1.1925  0:vod     = 658.5843f 0:vom     =   1.1925 
+ +0:vop     =   1.1925  2:vminv   =  -1.1925 
+
+
+ **** voltage sources
+
+ subckt                                   
+ element  0:vdd      0:vic      0:vid     
+  volts      1.8000     1.0000     0.     
+  current -884.0000u    0.         0.     
+  power      1.5912m    0.         0.     
+
+     total voltage source power dissipation=    1.5912m       watts
+
+
+
+ **** current sources
+
+ subckt             
+ element  0:it      
+  volts    310.8907m
+  current  884.0000u
+  power   -274.8274u
+
+
+     total current source power dissipation=-274.8274u       watts
+
+ **** resistors
+
+ subckt   x2         x2        
+ element  2:rdum1    2:rdum2   
+  r value    1.0000g    1.0000g
+  v drop   658.5843f    1.1925 
+  current  6.586e-22    1.1925n
+  power      0.         1.4219n
+
+
+ **** voltage-controlled voltage sources
+
+
+ subckt     x1         x1         x2         x2         x2      
+ element  1:e1       1:e2       2:e1       2:e2       2:e3      
+  volts      0.         0.        -1.1925     1.1925   658.3623f
+  current    0.         0.         0.        -1.1925n -6.586e-22
+
+
+
+
+
+ **** mosfets
+
+
+ subckt                                              
+ element  0:mn1      0:mn2      0:mp1      0:mp2     
+ model    0:nmos214  0:nmos214  0:pmos214  0:pmos214 
+ region     Saturati   Saturati   Saturati   Saturati
+  id       442.0000u  442.0000u -442.0000u -442.0000u
+  ibs        0.         0.         0.         0.     
+  ibd        0.         0.         0.         0.     
+  vgs      689.1093m  689.1093m -607.5475m -607.5475m
+  vds      881.5618m  881.5618m -607.5475m -607.5475m
+  vbs     -310.8907m -310.8907m    0.         0.     
+  vth      558.9171m  558.9171m -473.7236m -473.7236m
+  vdsat    117.8577m  117.8577m -127.0213m -127.0213m
+  vod      130.1922m  130.1922m -133.8239m -133.8239m
+  beta      54.1946m   54.1946m   48.5372m   48.5372m
+  gam eff  584.3667m  584.3667m  536.1561m  536.1561m
+  gm         5.9555m    5.9555m    5.8582m    5.8582m
+  gds      107.8540u  107.8540u  141.0537u  141.0537u
+  gmb        1.3490m    1.3490m    1.8036m    1.8036m
+  cdtot     43.5573f   43.5573f  177.0913f  177.0913f
+  cgtot     93.0095f   93.0095f  317.8289f  317.8289f
+  cstot    102.9546f  102.9546f  358.7041f  358.7041f
+  cbtot     69.7235f   69.7235f  260.9957f  260.9957f
+  cgs       70.1527f   70.1527f  228.1761f  228.1761f
+  cgd       18.3062f   18.3062f   80.8248f   80.8248f
+
+
+
+ ***************************************************
+   ******   pole/zero analysis  
+  
+  
+    input =  0:vid          output = v(vod)
+  
+       poles (rad/sec)                 poles ( hertz)
+ real            imag            real            imag            
+ -6.83857g       0.              -1.08839g       0.              
+ -6.97154g       0.              -1.10955g       0.              
+  
+       zeros (rad/sec)                 zeros ( hertz)
+ real            imag            real            imag            
+ -6.83857g       0.              -1.08839g       0.              
+ 316.910g        0.              50.4378g        0.              
+  
+  ***** constant factor = 21.4558m
+
+          ***** job concluded
+ ****** HSPICE -- I-2013.12-SP2 64-BIT (May 27 2014) RHEL64 ******              
+ ******  
+ * ee214b homework 4 problem 2
+
+ ****** job statistics summary tnom=  25.000 temp=  25.000 ******
+  
+  
+ ******  Machine Information  ******
+ CPU:
+ model name	: Quad-Core AMD Opteron(tm) Processor 2384
+ cpu MHz	: 2700.000
+  
+ OS:
+ Linux version 3.13.0-45-generic (buildd@phianna) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #74-Ubuntu SMP Tue Jan 13 19:36:28 UTC 2015
+
+
+  ******  HSPICE Threads Information  ******
+
+  Command Line Threads Count :     1
+  Available CPU Count        :     8
+  Actual Threads Count       :     1
+
+
+  ******  Circuit Statistics  ******
+  # nodes       =      16 # elements   =      17
+  # resistors   =       2 # capacitors =       2 # inductors   =       0
+  # mutual_inds =       0 # vccs       =       0 # vcvs        =       5
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       3
+  # curr_srcs   =       1 # diodes     =       0 # bjts        =       0
+  # jfets       =       0 # mosfets    =       4 # U elements  =       0
+  # T elements  =       0 # W elements =       0 # B elements  =       0
+  # S elements  =       0 # P elements =       0 # va device   =       0
+  # vector_srcs =       0 # N elements =       0
+
+
+  ******  Runtime Statistics (seconds)  ******
+
+  analysis           time    # points   tot. iter  conv.iter
+  op point           0.00           1         230
+  ac analysis        0.00         601         601
+  readin             0.01
+  errchk             0.00
+  setup              0.00
+  output             0.00
+
+
+           peak memory used        176.81 megabytes
+           total cpu time            0.01 seconds
+           total elapsed time        1.33 seconds
+           job started at     21:04:19 02/01/2016
+           job ended   at     21:04:21 02/01/2016
+
+
+ lic: Release hspice token(s) 
+ lic: total license checkout elapse time:        1.26(s)
