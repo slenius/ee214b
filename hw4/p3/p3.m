@@ -1,5 +1,3 @@
-%addpath('/usr/class/ee214b/matlab');
-
 close all
 clear all
 
@@ -71,3 +69,59 @@ plot(iss*1e6, 'b*-');
 xlabel('Iteration');
 ylabel('Iss (uA)');
 title('Iss Current Annealing - HW4 P3h');
+
+
+%d
+h = loadsig('p3.ac0');
+lssig(h)
+vod = evalsig(h, 'v_vod');
+
+mag_db = 20*log10(abs(vod));
+ang = angle(vod);
+freq = evalsig(h, 'HERTZ');
+
+mag_3db = max(mag_db) - 3;
+freq_3db = interp1(mag_db, freq, mag_3db);
+
+figure;
+
+semilogx(freq, mag_db);
+hold on;
+plot([freq_3db, freq_3db], [-200, mag_3db], 'k--*');
+grid on;
+xlabel('Hertz');
+ylabel('Gain (dB)');
+title('Vod Frequency Response - HW4P3D');
+legend('Vod', '-3dB')
+ylim([-60, 20]);
+s = sprintf('%02.0f MHz', freq_3db/1e6);
+s = strcat('\leftarrow ', s);
+text(freq_3db*1.5,mag_3db, s)
+
+%j
+h = loadsig('p3_j.ac0');
+lssig(h)
+vod = evalsig(h, 'v_vod');
+
+mag_db = 20*log10(abs(vod));
+ang = angle(vod);
+freq = evalsig(h, 'HERTZ');
+
+mag_3db = max(mag_db) - 3;
+freq_3db = interp1(mag_db, freq, mag_3db);
+
+figure;
+
+semilogx(freq, mag_db);
+hold on;
+plot([freq_3db, freq_3db], [-200, mag_3db], 'k--*');
+grid on;
+xlabel('Hertz');
+ylabel('Gain (dB)');
+title('Vod Frequency Response - HW4P3J');
+legend('Vod', '-3dB')
+ylim([-60, 20]);
+s = sprintf('%02.0f MHz', freq_3db/1e6);
+s = strcat('\leftarrow ', s);
+text(freq_3db*1.5,mag_3db, s)
+
