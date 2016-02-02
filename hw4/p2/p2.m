@@ -38,3 +38,15 @@ col = n1.w * const.c_prime_ol_n;
 cgs = 2/3 * n1.w * n1.l * const.cox_n + col;
 cgd = col;
 cgb = 0;
+
+%e
+h = loadsig('ckt.ac0');
+lssig(h)
+
+sim_bw = 359e6;
+bw_err = calc_err_pct(p1_oct, sim_bw)
+
+%f
+f_i = sim_bw / (n1.id*2)
+
+f_i_class = 215e6 / 600e-6
