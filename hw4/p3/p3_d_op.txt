@@ -1,4 +1,4 @@
-Problem 3 Part F
+Problem 3 Part D
 
  **** mosfets
 
