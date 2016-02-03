@@ -4,6 +4,34 @@ close all
 load 180nch.mat
 load 180pch.mat
 
+%j
+h = loadsig('p4.ac0');
+lssig(h)
+vod = evalsig(h, 'v_vod');
+
+mag_db = 20*log10(abs(vod));
+ang = angle(vod);
+freq = evalsig(h, 'HERTZ');
+
+mag_3db = max(mag_db) - 3;
+freq_3db = interp1(mag_db, freq, mag_3db);
+
+figure;
+
+semilogx(freq, mag_db);
+hold on;
+plot([freq_3db, freq_3db], [-200, mag_3db], 'k--*');
+grid on;
+xlabel('Hertz');
+ylabel('Gain (dB)');
+title('Vod Frequency Response - HW4P4');
+legend('Vod', '-3dB')
+ylim([-60, 20]);
+s = sprintf('%02.0f MHz', freq_3db/1e6);
+s = strcat('\leftarrow ', s);
+text(freq_3db*1.5,mag_3db, s)
+
+
 % Specs
 f_spec = 1.1e9;
 c_l = 500e-15;
