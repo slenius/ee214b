@@ -52,4 +52,17 @@ w = i_bias / id_w
 w_t = lookup(nch, 'GM_CGG', 'GM_ID', gm_id_100, 'L', l)
 f_t = w_t / (2 * pi)
 
+% part h
+gm_sim = 902e-6;
+id_sim = 100e-6;
+cgtot_sim = 5.626e-15;
+
+w_t_sim = gm_sim / cgtot_sim
+gm_id_sim = gm_sim/id_sim
+
+% part i
+w_p1_sim = 1.61e9;
+w_p2_sim = 168.8e9;
+r_sim = w_p2_sim/w_p1_sim
+r_error = calc_err_pct(100, r_sim)
 
