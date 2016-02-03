@@ -1,0 +1,29 @@
+Problem 2 Part E
+
+**** mosfets
+
+
+ subckt                        
+ element  0:m1       0:m2      
+ model    0:nmos214  0:nmos214 
+ region     Saturati   Saturati
+  id       571.0000u  571.0000u
+  ibs        0.         0.     
+  ibd        0.         0.     
+  vgs      783.0706m  783.0706m
+  vds        1.0121     1.0121 
+  vbs     -216.9294m -216.9294m
+  vth      541.1596m  541.1596m
+  vdsat    176.8482m  176.8482m
+  vod      241.9110m  241.9110m
+  beta      22.0948m   22.0948m
+  gam eff  583.6854m  583.6854m
+  gm         4.0170m    4.0170m
+  gds      123.2972u  123.2972u
+  gmb      887.5677u  887.5677u
+  cdtot     12.6847f   12.6847f
+  cgtot     22.4760f   22.4760f
+  cstot     25.7820f   25.7820f
+  cbtot     19.4629f   19.4629f
+  cgs       16.2104f   16.2104f
+  cgd        5.2983f    5.2983f
