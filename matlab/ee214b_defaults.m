@@ -4,7 +4,6 @@ function c = ee214b_defaults(model)
   c.ep_o = 8.854e-12; % permittivity of free space
   c.q = 1.602e-19;    % charge of electron
   c.psi_o = 0.7;
-  c.q = 1.6e-19;
   c.T = 300;
   c.k = 1.38e-23;
   c.v_t = c.k * c.T / c.q;
