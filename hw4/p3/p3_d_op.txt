@@ -1,4 +1,4 @@
-Problem 3 Part F
+Problem 3 Part D
 
  **** mosfets
 
@@ -27,3 +27,4 @@ Problem 3 Part F
   cbtot     32.8565f   32.8565f  113.7785f  113.7785f
   cgs       32.7243f   32.7243f  102.1611f  102.1611f
   cgd        8.3798f    8.3798f   35.5343f   35.5343f
+
