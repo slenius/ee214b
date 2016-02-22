@@ -2,12 +2,11 @@
 % This file generates plots of the total output noise and the integrated
 % noise from .noise simulation results of HSpice.
 
-addpath('/usr/class/ee214b/matlab/hspice_toolbox');
 clear all;
 close all;
 
 % Load hspice output
-HW4 = loadsig('Q3.ac0');
+HW4 = loadsig('ckt.ac0');
 
 % List available signals
 lssig(HW4)
@@ -16,6 +15,11 @@ lssig(HW4)
 f     = evalsig(HW4, 'HERTZ');
 no    = evalsig(HW4, 'outnoise');
 ni    = evalsig(HW4, 'innoise');
+
+no = no(f<=100e6);
+ni = ni(f<=100e6);
+f = f(f<=100e6);
+
 integ = cumtrapz(f, no);
 integ_sqrt = 1e6*sqrt(integ);
 integ_final = integ_sqrt(end);

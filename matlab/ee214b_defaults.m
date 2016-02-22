@@ -1,10 +1,10 @@
-function c = ee214b_defaults(model)
+function c = ee214b_defaults(model, temp)
   c.Ks = 11.8;
   c.Kox = 3.9;
   c.ep_o = 8.854e-12; % permittivity of free space
   c.q = 1.602e-19;    % charge of electron
   c.psi_o = 0.7;
-  c.T = 300;
+  c.T = temp;
   c.k = 1.38e-23;
   c.v_t = c.k * c.T / c.q;
  
